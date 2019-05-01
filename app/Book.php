@@ -16,13 +16,12 @@ class Book extends Model
     //protected $primaryKey = 'name_der_pk_col';
 
     //diese Spalten dürfen geändert werden
-    protected $fillable = ['isbn','title','subtitle','published','rating','description','user_id'];
+    protected $fillable = ['isbn','title','subtitle', 'price', 'published',
+        'rating','description','user_id'];
 
     //QueryScope
     //müssen mit scope anfangen und query mitbekommen
     public function scopeFavourite($query){
-        //keine Verknüofung möglich
-        //return $this->rating >=8;
 
         //Where: 1. Spalte, 2. ??, 3. Wert
         return $query->where('rating', '>=', 8);
@@ -40,6 +39,10 @@ class Book extends Model
 
     public function authors() : BelongsToMany {
         return $this->belongsToMany(Author::class);
+    }
+
+    public function order() : BelongsTo{
+        return $this->belongsTo(Order::class);
     }
 
 }

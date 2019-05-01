@@ -13,9 +13,23 @@ class UsersTableSeeder extends Seeder
     {
         //test user
         $user = new \App\User;
-        $user->name = 'testuser';
+        $user->name = 'Admin';
         $user->email = 'testuser@gmail.com';
         $user->password = bcrypt('secret');
+        $user->isAdmin = true;
+        $user->firstname = 'Lisa';
+        $user->lastname = 'Admin';
+        $user->address = 'Softwarepark 10';
         $user->save();
+
+        $user1 = new \App\User;
+        $user1->name = 'Testclient';
+        $user1->email = 'testclient@gmail.com';
+        $user1->password = bcrypt('miau');
+        $user1->isAdmin = false;
+        $user1->firstname = 'Moritz';
+        $user1->lastname = 'Mayr';
+        $user1->address = 'Softwarepark 106';
+        $user1->save();
     }
 }

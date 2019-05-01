@@ -17,7 +17,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'isAdmin', 'firstname', 'lastname', 'address'
     ];
 
     /**
@@ -29,10 +29,12 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
-    //ein User hat mehrere Bücher
-    //books da mehrere
     public function books() : HasMany {
         return $this->hasMany(Book::class);
+    }
+
+    public function orders() : HasMany {
+        return $this->hasMany(Order::class);
     }
 
     public function getJWTIdentifier(){
@@ -40,9 +42,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function getJWTCustomClaims(){
-        return ['user' => ['id'=>$this->id]];
-        //im JWT Token etwas mitgeben
-        //auch mitschicken ob admin oder nicht -- erweitern!
-        //'isAdmin' - mappen auf richtige Spalte
+        return ['user' => ['id'=>$this->id, 'isAdmin'=>$this->isAdmin]];
     }
 }

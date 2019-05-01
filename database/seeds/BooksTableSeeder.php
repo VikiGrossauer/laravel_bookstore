@@ -28,6 +28,7 @@ class BooksTableSeeder extends Seeder
         $book->rating = 10;
         $book->description = 'Letzter Teil der Triologie';
         $book->published = new DateTime();
+        $book->price = 10;
 
         //get the first user
         //1-n beziehung

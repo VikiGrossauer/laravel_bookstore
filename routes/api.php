@@ -31,6 +31,7 @@ Route::group(['middleware' =>['api', 'cors', 'jwt.auth']], function () {
     Route::put('book/{isbn}', 'BookController@update');
     Route::delete('book/{isbn}', 'BookController@delete');
     Route::post('auth/logout', 'Auth\ApiAuthController@logout');
+    // Route::post('order', 'OrderController@save');
 });
 
 
