@@ -41,8 +41,8 @@ class Book extends Model
         return $this->belongsToMany(Author::class);
     }
 
-    public function order() : BelongsTo{
-        return $this->belongsTo(Order::class);
+    public function order() : BelongsToMany{
+        return $this->belongsToMany(Order::class);
     }
 
 }

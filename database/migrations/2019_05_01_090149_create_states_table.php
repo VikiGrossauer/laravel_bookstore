@@ -16,7 +16,7 @@ class CreateStatesTable extends Migration
         Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
             $table->string('comment');
-            $table->enum('state', array('open', 'paid', 'sent', 'canceled'));
+            $table->string('state');
             $table->integer('order_id')->unsigned();
 
             $table->foreign('order_id')

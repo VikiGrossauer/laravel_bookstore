@@ -20,6 +20,8 @@ class UsersTableSeeder extends Seeder
         $user->firstname = 'Lisa';
         $user->lastname = 'Admin';
         $user->address = 'Softwarepark 10';
+        $user->plz = "4232";
+        $user->city = "Hagenberg";
         $user->save();
 
         $user1 = new \App\User;
@@ -30,6 +32,8 @@ class UsersTableSeeder extends Seeder
         $user1->firstname = 'Moritz';
         $user1->lastname = 'Mayr';
         $user1->address = 'Softwarepark 106';
+        $user1->plz = "4232";
+        $user1->city = "Hagenberg";
         $user1->save();
     }
 }

@@ -13,37 +13,38 @@ class OrdersTableSeeder extends Seeder
     {
         //
 
-        $order = new \App\Order();
-        $order->orderNr =  "1";
-        $order->price = "20";
-        $order->totalPrice = "35";
+        //order 1
+        $order1 = new \App\Order();
+        $order1->order_date = new DateTime();
+        $order1->total_Price = "35";
+        $order1->ust = 10;
 
         $user = \App\User::all()->first();
-        $order->user()->associate($user);
-        //speicher in DB
-        $order->save();
+        $order1->user()->associate($user);
+        $order1->save();
 
-        /*
-        $book1 = new \App\Book;
-        $book1->isbn = "12345678910";
-        $book1->title = "Book";
-        $book1->subtitle = "Book of Books";
-        $book1->price = "20";
-        $book1->published = "14.01.1997";
-        $book1->rating = "8";
-        $book1->description = "Hallo";
-        $book1->order()->associate($order);
-        $book1->save();
+        $state1 = new \App\State;
+        $state1->comment = 'Test';
+        $state1->state = 'open';
+        $state1->order()->associate($order1);
+        $state1->save();
 
-        $book2 = new \App\Book;
-        $book2->isbn = "12345678900";
-        $book2->title = "Book2";
-        $book2->subtitle = "Book of Books V2";
-        $book2->price = "15";
-        $book2->published = "14.03.2007";
-        $book2->rating = "8";
-        $book2->description = "Hallo";
-        $book2->order()->associate($order);
-        $book2->save();*/
+        $state2 = new \App\State;
+        $state2->comment = 'second test';
+        $state2->state = 'canceled';
+        $state2->order()->associate($order1);
+        $state2->save();
+
+        $books = \App\Book::all();
+        foreach($books as $book) {
+
+            $order1->books()->save($book, array(
+                'price' => $book['price'],
+                'amount' => 3
+            ));
+        }
+
+        $order1->save();
+
     }
 }
