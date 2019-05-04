@@ -31,7 +31,7 @@ class OrderController extends Controller
     }*/
 
     public function getOrder($order_id){
-        $order = Order::where('id', $order_id)->with(['books', 'states'])->first();
+        $order = Order::where('id', $order_id)->with(['books', 'states', 'user'])->first();
         return $order;
     }
 
